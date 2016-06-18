@@ -186,7 +186,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="1.-Classification-vs-Regression">1. Classification vs Regression<a class="anchor-link" href="#1.-Classification-vs-Regression">&#182;</a></h2><p>Your goal is to identify students who might need early intervention - which type of supervised machine learning problem is this, classification or regression? Why?</p>
-<p>Classification. because classification is the concretely answer which is the answer is just yes or no. While regression answer will be the number. so student who migh need early intervention in this supervised learning will be just "yes, he need early intervention" or "no, he don't need"</p>
+<p>Classification. because classification is the concretely answer which is the answer is just yes or no. While regression answer will be the continuous number so student who might need early intervention in this supervised learning will be just "yes, he need early intervention" or "no, he don't need"</p>
 
 </div>
 </div>
@@ -204,12 +204,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[169]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
 </pre></div>
 
 </div>
@@ -219,7 +220,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[170]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Read student data</span>
@@ -267,7 +268,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[196]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Compute desired values - replace each &#39;?&#39; with an appropriate expression/function call</span>
@@ -281,6 +282,9 @@ div#notebook {
 <span class="k">print</span> <span class="s2">&quot;Number of students who failed: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_failed</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Number of features: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_features</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Graduation rate of the class: {:.2f}%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grad_rate</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">F1 score for all &#39;yes&#39; on students: {:.4f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">f1_score</span><span class="p">(</span><span class="n">y_true</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">n_passed</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;no&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">n_failed</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">n_students</span><span class="p">,</span> 
+             <span class="n">pos_label</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -298,6 +302,8 @@ Number of students who passed: 265
 Number of students who failed: 130
 Number of features: 30
 Graduation rate of the class: 67.09%
+
+F1 score for all &apos;yes&apos; on students: 0.8030
 </pre>
 </div>
 </div>
@@ -321,7 +327,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[197]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature (X) and target (y) columns</span>
@@ -395,7 +401,7 @@ Feature values:-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[198]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Preprocess feature columns</span>
@@ -453,7 +459,7 @@ Feature values:-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[199]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># First, decide how many training vs test samples you want</span>
@@ -473,6 +479,8 @@ Feature values:-
 <span class="c1">#y_test = ?</span>
 <span class="k">print</span> <span class="s2">&quot;Training set: {} samples&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="k">print</span> <span class="s2">&quot;Test set: {} samples&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span> <span class="s2">&quot;Grad rate of the training set: {:.2f}%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="k">print</span> <span class="s2">&quot;Grad rate of the testing set: {:.2f}%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 <span class="c1"># Note: If you need a validation set, extract it from within training data</span>
 </pre></div>
 
@@ -488,6 +496,8 @@ Feature values:-
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training set: 300 samples
 Test set: 95 samples
+Grad rate of the training set: 68.33%
+Grad rate of the testing set: 63.16%
 </pre>
 </div>
 </div>
@@ -502,10 +512,50 @@ Test set: 95 samples
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="4.-Training-and-Evaluating-Models">4. Training and Evaluating Models<a class="anchor-link" href="#4.-Training-and-Evaluating-Models">&#182;</a></h2><p>Choose 3 supervised learning models that are available in scikit-learn, and appropriate for this problem. For each model:</p>
-<ul>
-<li>What is the theoretical O(n) time &amp; space complexity in terms of input size?</li>
-<li>What are the general applications of this model? What are its strengths and weaknesses?</li>
-<li>Given what you know about the data so far, why did you choose this model to apply?</li>
+<h4 id="I-choose-Decision-Tree,-Naive-Bayes,-and-SVM-of-3-supervised-learning-models">I choose Decision Tree, Naive Bayes, and SVM of 3 supervised learning models<a class="anchor-link" href="#I-choose-Decision-Tree,-Naive-Bayes,-and-SVM-of-3-supervised-learning-models">&#182;</a></h4><ul>
+<li>What is the theoretical O(n) time &amp; space complexity in terms of input size?
+##### Decision Tree is O(mn . (log n) ),  Naive Bayes is O(N),  SVM is O(N power 2)</li>
+<li>What are the general applications of this model? What are its strengths and weaknesses?
+### Decision Tree 
+#### Generation application</li>
+<li>Decision trees are normally used in operations research and operations management where the calculation is not too complex</li>
+</ul>
+<h4 id="Strengths">Strengths<a class="anchor-link" href="#Strengths">&#182;</a></h4><ul>
+<li>white box model which can observer the model explanation by each step, easy to see what's going on behind the scene</li>
+<li>perform well with large datasets because of how fast while you could use just standard computing resources</li>
+<li>simple to understand</li>
+</ul>
+<h4 id="Weaknesses">Weaknesses<a class="anchor-link" href="#Weaknesses">&#182;</a></h4><ul>
+<li>might get into local minimum but not global minimum</li>
+<li>too long time to train complexity data when compare to other algorithm</li>
+</ul>
+<h3 id="Naive-Bayes">Naive Bayes<a class="anchor-link" href="#Naive-Bayes">&#182;</a></h3><h4 id="Generation-application">Generation application<a class="anchor-link" href="#Generation-application">&#182;</a></h4><ul>
+<li>used for solving spam filtering, facial recognize, and segmentation each items into label categories</li>
+</ul>
+<h4 id="Strengths">Strengths<a class="anchor-link" href="#Strengths">&#182;</a></h4><ul>
+<li>Naive Bayes models are fast and easy to train, and are fast to perform predictions.</li>
+<li>perform well with large datasets because of how fast while you could use just standard computing resources</li>
+<li>simple to understand</li>
+</ul>
+<h4 id="Weaknesses">Weaknesses<a class="anchor-link" href="#Weaknesses">&#182;</a></h4><ul>
+<li>might get into local minimum but not global minimum</li>
+<li>too long time to train complexity data when compare to other algorithm</li>
+</ul>
+<h3 id="Support-Vector-Machine">Support Vector Machine<a class="anchor-link" href="#Support-Vector-Machine">&#182;</a></h3><h3 id="Generation-application">Generation application<a class="anchor-link" href="#Generation-application">&#182;</a></h3><ul>
+<li>text classification, data classification, face recognition </li>
+</ul>
+<h4 id="Strengths">Strengths<a class="anchor-link" href="#Strengths">&#182;</a></h4><ul>
+<li>100 % reaching Global minimum </li>
+<li>Memory Efficient</li>
+<li>effective when they have high dimension space </li>
+</ul>
+<h4 id="Weaknesses">Weaknesses<a class="anchor-link" href="#Weaknesses">&#182;</a></h4><ul>
+<li>Not good for Big Data because consume too much time to train</li>
+<li>perform not well if data has more noise or doesn't have clear seperation</li>
+</ul>
+<h6 id="#">#<a class="anchor-link" href="##">&#182;</a></h6><ul>
+<li>Given what you know about the data so far, why did you choose this model to apply?
+###### I picked 3 model which is Decision Tree, Naive Bayes, and SVM. Other that I didn't pick in this model is Neural Network and Boosting because those 2 later it's fit more for complex data like image processing.</li>
 <li>Fit this model to the training data, try to predict labels (for both training and test sets), and measure the F<sub>1</sub> score. Repeat this process with different training set sizes (100, 200, 300), keeping test set constant.</li>
 </ul>
 <p>Produce a table showing training time, prediction time, F<sub>1</sub> score on training set and F<sub>1</sub> score on test set, for each training set size.</p>
@@ -516,21 +566,11 @@ Test set: 95 samples
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[200]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Train a model</span>
 <span class="kn">import</span> <span class="nn">time</span>
-
-<span class="c1">#What I&#39;ve learn so far so Supervised Classification is </span>
-<span class="c1">#Decision Tree</span>
-<span class="c1">#Naive Bayes</span>
-<span class="c1">#SVM</span>
-
-<span class="c1">#What I&#39;ve learn but I don&#39;t use </span>
-<span class="c1">#Neural Networks </span>
-<span class="c1">#Instance Based Learning</span>
-
 
 <span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
     <span class="k">print</span> <span class="s2">&quot;Training {}...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
@@ -547,7 +587,7 @@ Test set: 95 samples
     <span class="k">return</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="c1"># Fit model to training data</span>
 <span class="n">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>  <span class="c1"># note: using entire training set here</span>
@@ -566,11 +606,11 @@ Test set: 95 samples
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training DecisionTreeClassifier...
 Done!
-Training time (secs): 0.003
+Training time (secs): 0.058
 DecisionTreeClassifier(class_weight=None, criterion=&apos;gini&apos;, max_depth=None,
             max_features=None, max_leaf_nodes=None, min_samples_leaf=1,
             min_samples_split=2, min_weight_fraction_leaf=0.0,
-            presort=False, random_state=None, splitter=&apos;best&apos;)
+            presort=False, random_state=5, splitter=&apos;best&apos;)
 </pre>
 </div>
 </div>
@@ -581,7 +621,7 @@ DecisionTreeClassifier(class_weight=None, criterion=&apos;gini&apos;, max_depth=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[201]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Predict on training set and compute F1 score</span>
@@ -618,7 +658,7 @@ DecisionTreeClassifier(class_weight=None, criterion=&apos;gini&apos;, max_depth=
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Predicting labels using DecisionTreeClassifier...
 Done!
-Prediction time (secs): 0.001
+Prediction time (secs): 0.008
 F1 score for training set: 1.0
 </pre>
 </div>
@@ -630,7 +670,7 @@ F1 score for training set: 1.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[202]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Predict on test data</span>
@@ -650,7 +690,7 @@ F1 score for training set: 1.0
 <pre>Predicting labels using DecisionTreeClassifier...
 Done!
 Prediction time (secs): 0.001
-F1 score for test set: 0.656
+F1 score for test set: 0.645161290323
 </pre>
 </div>
 </div>
@@ -661,7 +701,7 @@ F1 score for test set: 0.656
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[203]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Train and predict using different training set sizes</span>
@@ -717,7 +757,7 @@ Prediction time (secs): 0.000
 Done!
 Prediction time (secs): 0.000
 F1 score for training set return: 1.0
-F1 score for test set return: 0.660869565217
+F1 score for test set return: 0.615384615385
 ------------------------------------------
 Training set size return: 200
 Done!
@@ -725,7 +765,7 @@ Prediction time (secs): 0.000
 Done!
 Prediction time (secs): 0.000
 F1 score for training set return: 1.0
-F1 score for test set return: 0.746031746032
+F1 score for test set return: 0.742424242424
 ------------------------------------------
 Training set size return: 300
 Done!
@@ -733,7 +773,7 @@ Prediction time (secs): 0.000
 Done!
 Prediction time (secs): 0.000
 F1 score for training set return: 1.0
-F1 score for test set return: 0.6
+F1 score for test set return: 0.645161290323
 </pre>
 </div>
 </div>
@@ -744,7 +784,7 @@ F1 score for test set return: 0.6
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[204]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Train and predict using two other models</span>
@@ -842,11 +882,11 @@ F1 score for test set return: 0.6
 =========Naive Bayes==========
 Training GaussianNB...
 Done!
-Training time (secs): 0.001
+Training time (secs): 0.003
 GaussianNB()
 Predicting labels using GaussianNB...
 Done!
-Prediction time (secs): 0.000
+Prediction time (secs): 0.002
 F1 score for training set: 0.80378250591
 Predicting labels using GaussianNB...
 Done!
@@ -855,9 +895,9 @@ F1 score for test set: 0.763358778626
 ------------------------------------------
 Training set size return: 100
 Done!
-Prediction time (secs): 0.000
+Prediction time (secs): 0.001
 Done!
-Prediction time (secs): 0.000
+Prediction time (secs): 0.001
 F1 score for training set return: 0.846715328467
 F1 score for test set return: 0.802919708029
 ------------------------------------------
@@ -871,7 +911,7 @@ F1 score for test set return: 0.724409448819
 ------------------------------------------
 Training set size return: 300
 Done!
-Prediction time (secs): 0.001
+Prediction time (secs): 0.000
 Done!
 Prediction time (secs): 0.000
 F1 score for training set return: 0.80378250591
@@ -882,19 +922,19 @@ F1 score for test set return: 0.763358778626
 ====Support Vector Machine====
 Training SVC...
 Done!
-Training time (secs): 0.007
+Training time (secs): 0.011
 SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
   decision_function_shape=None, degree=3, gamma=&apos;auto&apos;, kernel=&apos;rbf&apos;,
   max_iter=-1, probability=False, random_state=None, shrinking=True,
   tol=0.001, verbose=False)
 Predicting labels using SVC...
 Done!
-Prediction time (secs): 0.008
+Prediction time (secs): 0.005
 F1 score for training set: 0.876068376068
 Predicting labels using DecisionTreeClassifier...
 Done!
 Prediction time (secs): 0.000
-F1 score for test set: 0.6
+F1 score for test set: 0.645161290323
 ------------------------------------------
 Training set size return: 100
 Done!
@@ -906,9 +946,9 @@ F1 score for test set return: 0.774647887324
 ------------------------------------------
 Training set size return: 200
 Done!
-Prediction time (secs): 0.004
-Done!
 Prediction time (secs): 0.002
+Done!
+Prediction time (secs): 0.001
 F1 score for training set return: 0.867924528302
 F1 score for test set return: 0.781456953642
 ------------------------------------------
@@ -922,21 +962,21 @@ F1 score for test set return: 0.783783783784
 Table Comparison
 Comparison for Decision Tree
 No.    Training time    Prediction time(train)    Prediction time(test)    F1 Score(training)    F1 Score(testing)
-100      0.00222            0.00041                    0.00019                 1.00000               0.66087
-200      0.00139            0.00021                    0.00021                 1.00000               0.74603
-300      0.00208            0.00026                    0.00020                 1.00000               0.60000
+100      0.00177            0.00033                    0.00018                 1.00000               0.61538
+200      0.00134            0.00020                    0.00016                 1.00000               0.74242
+300      0.00183            0.00022                    0.00018                 1.00000               0.64516
 ====================================
 Comparison for Naive Bayes
 No.    Training time    Prediction time(train)    Prediction time(test)    F1 Score(training)    F1 Score(testing)
-100      0.00060            0.00026                    0.00026                 0.84672               0.80292
-200      0.00069            0.00032                    0.00026                 0.84058               0.72441
-300      0.00105            0.00056                    0.00030                 0.80378               0.76336
+100      0.00135            0.00063                    0.00081                 0.84672               0.80292
+200      0.00159            0.00042                    0.00026                 0.84058               0.72441
+300      0.00078            0.00037                    0.00025                 0.80378               0.76336
 ====================================
 Comparison for SVM
 No.    Training time    Prediction time(train)    Prediction time(test)    F1 Score(training)    F1 Score(testing)
-100      0.00221            0.00137                    0.00129                 0.87770               0.77465
-200      0.00425            0.00370                    0.00152                 0.86792               0.78146
-300      0.00939            0.00721                    0.00239                 0.87607               0.78378
+100      0.00115            0.00074                    0.00086                 0.87770               0.77465
+200      0.00314            0.00218                    0.00112                 0.86792               0.78146
+300      0.00776            0.00733                    0.00172                 0.87607               0.78378
 </pre>
 </div>
 </div>
@@ -952,14 +992,15 @@ No.    Training time    Prediction time(train)    Prediction time(test)    F1 Sc
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="5.-Choosing-the-Best-Model">5. Choosing the Best Model<a class="anchor-link" href="#5.-Choosing-the-Best-Model">&#182;</a></h2><ul>
 <li>Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?
-It's seem that from the table above, Decision tree is the fastest in term of training and testing but F1 score is the lowest. I can conculde that Decision tree has high variance because while it's make perfect score in training but the f1 score in testing in the lowest. As lecturer's explained that Decision tree is not suitable for complex data.
-Naive Bayes is the second in terms of fastest in traning and testing while f1 score for testing has done a similar result when compare to SVC. SVC is the best in prediction accuracy but it's take longest time to train. I will pick Naive Bayes for the most appropriate model if we're consider about limited resource, cost compare to f1 score.</li>
+###### It's seem that from the table above, Decision tree is the fastest in term of training and testing but F1 score is the lowest. I can conculde that Decision tree has high variance because while it's make perfect score in training but the f1 score in testing in the lowest. As lecturer's explained that Decision tree is not suitable for complex data.
+###### Naive Bayes is the second in terms of fastest in traning and testing while f1 score for testing has done a similar result when compare to SVC. SVC is the best in prediction accuracy but it's take longest time to train. I will pick Naive Bayes for the most appropriate model if we're consider about limited resource, cost compare to f1 score.</li>
 <li>In 1-2 paragraphs explain to the board of supervisors in layman's terms how the final model chosen is supposed to work (for example if you chose a Decision Tree or Support Vector Machine, how does it make a prediction).
-To explained in layman's terms with 1-2 paragraphs will be, We are using Naive Bayes method to be our appropriate model because of the accuracy of the result might not be the greatest, lower than the best one around 2%, but the cost of this method is less than the best one around 3-4 times.</li>
+###### To explained in layman's terms with 1-2 paragraphs will be, We are using Naive Bayes method to be our appropriate model. How Naive Bayes work?  We've devided into 2 parts Naive rules and Bayes rules. If you have 10 candies in total, 8 of that candies come from box A, 2 come from box B. If you random pick 1 out of 10, we can guess that a candy that you pick is come from Box A because it has higher probability. This is called Naive rules because we pick it naively. For Bayes rules, if you are interesting in study crime rate, and you could see the data that there is a connection or related to education of people around there, economic, and how crowded. which you can use Bayes Theorem for getting probability of those informations.
+###### So Naive Bayes are looking into features or the data that you provided and calculate the relation between those featuers to get probability. They will use "Naive" to guess that if student is far from school they will have higher probability to failed at school and after that algorithm will use "Bayes" to see the connection of other featuers to calculate other "Naive" to get the final probability of the process.</li>
 <li>Fine-tune the model. Use Gridsearch with at least one important parameter tuned and with at least 3 settings. Use the entire training set for this.
-3 settings with degree, kernal, and C</li>
+###### Naive Bayes doesn't need Fine-tune because they are't any parameters for Naive Bayes but I show how Fine-tune is working below by using Support Vector Machine</li>
 <li>What is the model's final F<sub>1</sub> score?
-F1 score is 0.794520547945 which I could improved from 0.78378 and the speed from 0.00721 go down to 0.00665402412415</li>
+###### F1 score is 0.794520547945 which I could improved from 0.78378 and the speed from 0.00721 go down to 0.00665402412415</li>
 </ul>
 
 </div>
@@ -967,7 +1008,7 @@ F1 score is 0.794520547945 which I could improved from 0.78378 and the speed fro
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[220]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Fine-tune your model and report the best F1 score</span>
@@ -989,6 +1030,7 @@ F1 score is 0.794520547945 which I could improved from 0.78378 and the speed fro
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_new_all</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">num_test</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;degree&#39;</span><span class="p">:(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;kernel&#39;</span><span class="p">:(</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="s1">&#39;sigmoid&#39;</span><span class="p">),</span> <span class="s1">&#39;C&#39;</span><span class="p">:(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">)</span> <span class="p">}</span>
 <span class="n">svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">()</span>
+<span class="c1">#NB = GaussianNB()</span>
 <span class="c1">#cfs = DecisionTreeClassifier()</span>
 <span class="n">model</span><span class="p">,</span> <span class="n">best_value</span> <span class="o">=</span> <span class="n">fine_tune</span><span class="p">(</span><span class="n">svc</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
@@ -1016,13 +1058,13 @@ F1 score is 0.794520547945 which I could improved from 0.78378 and the speed fro
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[225]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Number of Training : &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Time : {}&quot;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;F1 score : {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span>
@@ -1039,7 +1081,7 @@ F1 score is 0.794520547945 which I could improved from 0.78378 and the speed fro
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Number of Training :  300
-Time : 0.00665402412415
+Time : 0.00693011283875
 F1 score : 0.794520547945
 </pre>
 </div>
